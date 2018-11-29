@@ -177,20 +177,17 @@ void sumarNodo(Nodo *&arbol, int n){
     if(arbol == NULL || arbol->izq == NULL || arbol->der == NULL){//si el arbol esta vacio
         return;
     }else{//si el arbol tiene un nodo o mas de un nodo
-        if(n == 1){//se manda al lado izquierdo
+        int valorRaiz = arbol->dato;//obtenemos el valor de la raiz
+        if(n < valorRaiz){//se manda al lado izquierdo
             sumarNodo(arbol->izq, n);
-        }else if (n == 0){//si es mayor se inserta en el lado derecho
+            valorRaiz = valorRaiz + n;
+        arbol->dato = valorRaiz;
+        }else if (n > valorRaiz){//si es mayor se inserta en el lado derecho
             sumarNodo(arbol->der, n);
-        }else if (arbol == arbol->der){
-            int sum;
-            sum = arbol->dato;
-            sum = sum + (n);
-            arbol->dato = sum;
-        }else if (arbol == arbol->der){
-            int sum;
-            sum = arbol->dato;
-            sum = sum + (n);
-            arbol->dato = sum;
+            valorRaiz = valorRaiz + n;
+        arbol->dato = valorRaiz;
         }
+        valorRaiz = valorRaiz + n;
+        arbol->dato = valorRaiz;
     }
 }
